@@ -18,4 +18,23 @@ class Answer extends Model
 			'answer',
 			'is_correct'
 		];
+
+		public function exam()
+		{
+				return $this->belongsTo(Exam::class);
+		}
+
+		public function exam_session()
+		{
+				return $this->belongsTo(ExamSession::class);
+		}
+		public function student()
+		{
+				return $this->belongsTo(Student::class);
+		}
+
+		public function question()
+		{
+				return $this->belongsTo(Question::class);
+		}
 }

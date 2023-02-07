@@ -18,4 +18,9 @@ class Question extends Model
 			'option_5',
 			'answer'
 		];
+
+		public function exam()
+		{
+				return $this->belongsTo(Exam::class);
+		}
 }

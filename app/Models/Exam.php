@@ -18,4 +18,21 @@ class Exam extends Model
 			'random_answer',
 			'show_answer'
 		];
+
+		public function lesson()
+		{
+				return $this->belongsTo(Lesson::class);
+		}
+
+		public function classroom()
+		{
+				return $this->belongsTo(Classroom::class);
+		}
+
+		public function question()
+		{
+				return $this->hasMany(Question::class);
+		}
+
+		
 }

@@ -15,4 +15,14 @@ class ExamSession extends Model
 			'start_time',
 			'end_time'
 		];
+
+		public function exam()
+		{
+				return $this->belongsTo(Exam::class);
+		}
+
+		public function exam_group()
+		{
+				return $this->hasMany(ExamGroup::class);
+		}
 }
