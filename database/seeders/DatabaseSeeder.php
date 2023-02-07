@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Classroom;
 use App\Models\Lesson;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +30,12 @@ class DatabaseSeeder extends Seeder
 
 				Classroom::create([
 					'title' => 'XII IPS 1'
+				]);
+
+				User::create([
+					'name' => 'Administrator',
+					'email' => 'admin@gmail.com',
+					'password' => bcrypt('12345')
 				]);
     }
 }
