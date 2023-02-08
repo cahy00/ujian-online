@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LessonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('admin')->group(function(){
+	//route dashboard
+	Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('admin.dashboard');
+	Route::get('/lesson', [LessonController::class, 'index']);
 });
