@@ -10,14 +10,13 @@
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
                             <div class="card-body">Kelas</div>
-                            <p>{{}}</p>
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between"
                             >
                                 <a
-                                    class="small text-white stretched-link"
+                                    class="medium text-white stretched-link"
                                     href="#"
-                                    >View Details</a
+                                    >{{ classrooms }}</a
                                 >
                                 <div class="small text-white">
                                     <i class="fas fa-angle-right"></i>
@@ -27,14 +26,14 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-warning text-white mb-4">
-                            <div class="card-body">Warning Card</div>
+                            <div class="card-body">Siswa</div>
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between"
                             >
                                 <a
-                                    class="small text-white stretched-link"
+                                    class="medium text-white stretched-link"
                                     href="#"
-                                    >View Details</a
+                                    >{{ students }}</a
                                 >
                                 <div class="small text-white">
                                     <i class="fas fa-angle-right"></i>
@@ -44,14 +43,14 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-success text-white mb-4">
-                            <div class="card-body">Success Card</div>
+                            <div class="card-body">Ujian</div>
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between"
                             >
                                 <a
                                     class="small text-white stretched-link"
                                     href="#"
-                                    >View Details</a
+                                    >{{ exams }}</a
                                 >
                                 <div class="small text-white">
                                     <i class="fas fa-angle-right"></i>
@@ -61,14 +60,14 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-danger text-white mb-4">
-                            <div class="card-body">Danger Card</div>
+                            <div class="card-body">Sesi Ujian</div>
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between"
                             >
                                 <a
                                     class="small text-white stretched-link"
                                     href="#"
-                                    >View Details</a
+                                    >{{ exam_sessions }}</a
                                 >
                                 <div class="small text-white">
                                     <i class="fas fa-angle-right"></i>
@@ -95,10 +94,10 @@ export default {
         Footer,
     },
     props: {
-        classroom: Number,
-        student: Number,
-        exam: Number,
-        exam_session: Number,
+        classrooms: Number,
+        students: Number,
+        exams: Number,
+        exam_sessions: Number,
     },
 };
 </script>
