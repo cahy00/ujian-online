@@ -16,7 +16,12 @@ class LessonController extends Controller
      */
     public function index()
     {
-				$lessons = Lesson::orderBy('title', 'ASC')->get();
+				// $lessons = Lesson::when(request()->q, function($lessons){
+				// 	$lessons = $lessons->where('title', 'LIKE', '%' . request()->q . '%');
+				// });
+
+				// $lessons->appends(['q' => request()->q]);
+				$lessons = Lesson::all();
         // return Inertia::render('Admin/Lesson/Index', [
 				// 	'lessons' => $lessons
 				// ]);
