@@ -30,7 +30,7 @@ class LessonController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Lesson/Create');
     }
 
     /**
