@@ -17,19 +17,18 @@
                         Dashboard
                     </Link>
                     <div class="sb-sidenav-menu-heading">Modul</div>
-                    <a
-                        class="nav-link collapsed"
-                        href="#"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapsePages"
-                        aria-expanded="false"
-                        aria-controls="collapsePages"
+                    <Link
+                        href="/admin/lesson"
+                        :class="{
+                            active: $page.url.startsWith('/admin/lesson'),
+                        }"
+                        class="nav-link"
                     >
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-book-open"></i>
                         </div>
                         Mata Pelajaran
-                    </a>
+                    </Link>
                     <a
                         class="nav-link collapsed"
                         href="#"

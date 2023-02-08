@@ -22,5 +22,6 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function(){
 	//route dashboard
 	Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('admin.dashboard');
+	//route lesson
 	Route::get('/lesson', [LessonController::class, 'index']);
 });

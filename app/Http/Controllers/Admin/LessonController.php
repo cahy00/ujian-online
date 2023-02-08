@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +16,11 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Lesson/Index');
+				$lessons = Lesson::orderBy('title', 'ASC')->get();
+        // return Inertia::render('Admin/Lesson/Index', [
+				// 	'lessons' => $lessons
+				// ]);
+				return inertia('Admin/Lesson/Index', compact('lessons'));
     }
 
     /**
