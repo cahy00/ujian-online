@@ -10,15 +10,13 @@
 </template>
 
 <script>
-import Navbar from "../Components/Navbar1.vue";
-import Sidebar from "../Components/Sidebar1.vue";
-import Footer from "../Components/Sidebar1.vue";
+import Navbar from "../Components/Navbar.vue";
+import Sidebar from "../Components/Sidebar.vue";
 
 export default {
     components: {
         Navbar,
         Sidebar,
-        Footer,
     },
 };
 </script>
