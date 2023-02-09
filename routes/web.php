@@ -28,6 +28,6 @@ Route::prefix('admin')->group(function(){
 	Route::post('/lesson/create', [LessonController::class, 'store'])->name('lesson.create');
 	Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->name('lesson.edit');
 	Route::put('/lesson/update/{id}', [LessonController::class, 'update'])->name('lesson.update');
-	Route::put('/lesson/delete/{id}', [LessonController::class, 'delete'])->name('lesson.delete');
+	Route::get('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lesson.delete');
 
 });

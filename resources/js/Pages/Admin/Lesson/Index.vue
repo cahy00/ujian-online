@@ -48,7 +48,7 @@
                                         |
                                         <Link
                                             :href="`/admin/lesson/delete/${lesson.id}`"
-                                            @click.prevent="destroy"
+                                            @click.prevent="trys"
                                             class="btn btn-danger"
                                             >Delete</Link
                                         >
@@ -71,6 +71,7 @@ import Footer from "../../../Components/Footer.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../Components/Pagination.vue";
 import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
 
 export default {
     components: {
@@ -84,8 +85,27 @@ export default {
         lessons: Object,
     },
     methods: {
-        destroy() {
-            Inertia.delete();
+        trys() {
+            Swal.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Inertia.delete(`/admin/lesson/delete/${lesson.id}`);
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Pelajaran Berhasil Dihapus!.",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                    });
+                }
+            });
         },
     },
 };
