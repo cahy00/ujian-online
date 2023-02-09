@@ -89,7 +89,16 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+				$request->validate([
+					'title' => 'required|string'
+				]);
+
+        $lesson = Lesson::findOrFail($id);
+				$lesson->update([
+					'title' => $request->title
+				]);
+
+				return redirect()->route('lesson.index');
     }
 
     /**

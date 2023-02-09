@@ -42,6 +42,7 @@
                                     <td>
                                         <Link
                                             :href="`/admin/lesson/${lesson.id}/edit`"
+                                            class="btn btn-success"
                                             >Edit</Link
                                         >
                                     </td>

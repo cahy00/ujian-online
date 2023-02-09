@@ -23,10 +23,10 @@ Route::prefix('admin')->group(function(){
 	//route dashboard
 	Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('admin.dashboard');
 	//route lesson
-	Route::get('/lesson', [LessonController::class, 'index']);
+	Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
 	Route::get('/lesson/create', [LessonController::class, 'create']);
 	Route::post('/lesson/create', [LessonController::class, 'store'])->name('lesson.create');
 	Route::get('/lesson/{id}/edit', [LessonController::class, 'edit'])->name('lesson.edit');
-	Route::put('/lesson/{id}/update', [LessonController::class, 'update'])->name('lesson.update');
+	Route::put('/lesson/update/{id}', [LessonController::class, 'update'])->name('lesson.update');
 
 });
