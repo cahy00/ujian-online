@@ -109,6 +109,9 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+				$lesson->delete();
+
+				return redirect()->route('lesson.index');
     }
 }

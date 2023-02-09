@@ -41,9 +41,16 @@
                                     </td>
                                     <td>
                                         <Link
-                                            :href="`/admin/lesson/${lesson.id}/edit`"
+                                            :href="`/admin/lesson/edit/${lesson.id}`"
                                             class="btn btn-success"
                                             >Edit</Link
+                                        >
+                                        |
+                                        <Link
+                                            :href="`/admin/lesson/delete/${lesson.id}`"
+                                            @click.prevent="destroy"
+                                            class="btn btn-danger"
+                                            >Delete</Link
                                         >
                                     </td>
                                 </tr>
@@ -63,6 +70,7 @@ import { Head } from "@inertiajs/vue3";
 import Footer from "../../../Components/Footer.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../Components/Pagination.vue";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
     components: {
@@ -74,6 +82,11 @@ export default {
     layout: Layout,
     props: {
         lessons: Object,
+    },
+    methods: {
+        destroy() {
+            Inertia.delete();
+        },
     },
 };
 </script>
