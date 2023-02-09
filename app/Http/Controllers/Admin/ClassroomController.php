@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Classroom;
-use App\Http\Requests\StoreClassroomRequest;
-use App\Http\Requests\UpdateClassroomRequest;
+use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
 {
@@ -15,7 +15,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Admin/Classroom/Index');
     }
 
     /**
@@ -31,10 +31,10 @@ class ClassroomController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreClassroomRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClassroomRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +64,11 @@ class ClassroomController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateClassroomRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClassroomRequest $request, Classroom $classroom)
+    public function update(Request $request, Classroom $classroom)
     {
         //
     }

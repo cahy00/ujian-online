@@ -29,9 +29,12 @@
                         </div>
                         Mata Pelajaran
                     </Link>
-                    <a
-                        class="nav-link collapsed"
-                        href="#"
+                    <Link
+                        class="nav-link"
+                        :class="{
+                            active: $page.url.startsWith('/admin/classroom'),
+                        }"
+                        href="/admin/classroom"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseLayouts"
                         aria-expanded="false"
@@ -41,7 +44,7 @@
                             <i class="fas fa-columns"></i>
                         </div>
                         Kelas
-                    </a>
+                    </Link>
                     <a
                         class="nav-link collapsed"
                         href="#"

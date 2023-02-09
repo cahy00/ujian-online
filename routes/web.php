@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\ClassroomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +30,7 @@ Route::prefix('admin')->group(function(){
 	Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->name('lesson.edit');
 	Route::put('/lesson/update/{id}', [LessonController::class, 'update'])->name('lesson.update');
 	Route::get('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lesson.delete');
+	//route classroom
+	Route::get('/classroom', [ClassroomController::class, 'index'])->name('admin.classroom');
 
 });
