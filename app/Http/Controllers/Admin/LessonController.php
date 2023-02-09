@@ -76,7 +76,8 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        //
+				$lesson = Lesson::findOrFail($id);
+        return inertia('Admin/Lesson/Edit', compact('lesson'));
     }
 
     /**

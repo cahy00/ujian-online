@@ -26,5 +26,7 @@ Route::prefix('admin')->group(function(){
 	Route::get('/lesson', [LessonController::class, 'index']);
 	Route::get('/lesson/create', [LessonController::class, 'create']);
 	Route::post('/lesson/create', [LessonController::class, 'store'])->name('lesson.create');
+	Route::get('/lesson/{id}/edit', [LessonController::class, 'edit'])->name('lesson.edit');
+	Route::put('/lesson/{id}/update', [LessonController::class, 'update'])->name('lesson.update');
 
 });

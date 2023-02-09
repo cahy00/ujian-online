@@ -39,12 +39,16 @@
                                     <td>
                                         {{ lesson.title }}
                                     </td>
-                                    <td>Edit</td>
+                                    <td>
+                                        <Link
+                                            :href="`/admin/lesson/${lesson.id}/edit`"
+                                            >Edit</Link
+                                        >
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <Pagination :links="lessons.links" align="end" />
                 </div>
             </div>
         </main>
