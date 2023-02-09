@@ -46,7 +46,15 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+				$request->validate([
+					'title' => 'validate|string|unique:lessons'
+				]);
+
+        $lessons = Lesson::create([
+					'title' => $request->title
+				]);
+
+				return redirect(route('lesson.create'));
     }
 
     /**

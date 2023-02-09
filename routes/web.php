@@ -25,6 +25,6 @@ Route::prefix('admin')->group(function(){
 	//route lesson
 	Route::get('/lesson', [LessonController::class, 'index']);
 	Route::get('/lesson/create', [LessonController::class, 'create']);
-	Route::post('/lesson/create', [LessonController::class, 'store']);
+	Route::post('/lesson/create', [LessonController::class, 'store'])->name('lesson.create');
 
 });

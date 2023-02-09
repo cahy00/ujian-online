@@ -72,7 +72,8 @@ export default {
     layout: Layout,
     methods: {
         submit() {
-            this.$inertia.post("/lesson/create", data);
+            // console.log(this.form);
+            this.$inertia.post("/admin/lesson/create", this.form);
         },
     },
 };
