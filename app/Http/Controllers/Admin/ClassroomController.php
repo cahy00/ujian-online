@@ -15,7 +15,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        return inertia('Admin/Classroom/Index');
+				$classroom = Classroom::all();
+        return inertia('Admin/Classroom/Index', compact('classroom'));
+				// dd($classrooms);
     }
 
     /**

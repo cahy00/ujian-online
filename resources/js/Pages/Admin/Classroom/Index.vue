@@ -28,9 +28,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr
+                                    v-for="classrooms in classroom"
+                                    :key="classrooms.id"
+                                >
                                     <td>1</td>
-                                    <td>2</td>
+                                    <td>{{ classrooms.title }}</td>
                                     <td>3</td>
                                 </tr>
                             </tbody>
@@ -51,5 +54,8 @@ export default {
         Footer,
     },
     layout: Layout,
+    props: {
+        classroom: Object,
+    },
 };
 </script>
