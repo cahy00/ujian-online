@@ -30,10 +30,16 @@
                                 >
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control errors"
                                     placeholder="Masukkan Mata Pelajaran"
                                     v-model="form.title"
                                 />
+                                <p
+                                    v-if="errors.title"
+                                    class="alert alert-danger"
+                                >
+                                    {{ errors.title }}
+                                </p>
                             </div>
                             <button
                                 type="submit"
@@ -57,6 +63,8 @@
 <script>
 import Layout from "../../../Layouts/Layout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
 
 export default {
     components: {
@@ -70,10 +78,30 @@ export default {
         };
     },
     layout: Layout,
+    props: {
+        errors: Object,
+    },
     methods: {
         submit() {
             // console.log(this.form);
-            this.$inertia.post("/admin/lesson/create", this.form);
+            // this.$inertia.post("/admin/lesson/create", this.form);
+            Inertia.post(
+                "/admin/lesson/create",
+                {
+                    title: this.form.title,
+                },
+                {
+                    onSuccess: () => {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Pelajaran Berhasil Disimpan!.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+                    },
+                }
+            );
         },
     },
 };
