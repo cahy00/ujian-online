@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,14 @@ Route::prefix('admin')->group(function(){
 	Route::put('/classroom/update/{id}', [ClassroomController::class, 'update'])->name('classroom.update');
 	Route::put('/classroom/update/{id}', [ClassroomController::class, 'update'])->name('classroom.update');
 	Route::get('/classroom/delete/{id}', [ClassroomController::class, 'destroy'])->name('classroom.delete');
+	//route student
+	Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+	Route::get('/student/create/', [StudentController::class, 'create'])->name('student.create');
+	Route::post('/student/create/', [StudentController::class, 'store'])->name('student.store');
+	Route::get('/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
+	Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.delete');
+	Route::get('/student/import/', [StudentController::class, 'import'])->name('student.import');
+
 
 
 });

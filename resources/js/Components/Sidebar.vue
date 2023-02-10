@@ -35,29 +35,24 @@
                             active: $page.url.startsWith('/admin/classroom'),
                         }"
                         href="/admin/classroom"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseLayouts"
-                        aria-expanded="false"
-                        aria-controls="collapseLayouts"
                     >
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-columns"></i>
                         </div>
                         Kelas
                     </Link>
-                    <a
-                        class="nav-link collapsed"
-                        href="#"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapsePages"
-                        aria-expanded="false"
-                        aria-controls="collapsePages"
+                    <Link
+                        href="/admin/student"
+                        :class="{
+                            active: $page.url.startsWith('/admin/student'),
+                        }"
+                        class="nav-link"
                     >
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-user-md"></i>
                         </div>
                         Siswa
-                    </a>
+                    </Link>
                     <div class="sb-sidenav-menu-heading">Exam</div>
                     <a class="nav-link" href="charts.html">
                         <div class="sb-nav-link-icon">

@@ -2,17 +2,23 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Kelas</h1>
+                <h1 class="mt-4">Siswa</h1>
                 <ol class="breadcrumb mb-4"></ol>
                 <div class="card mb-4">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
                                 <Link
-                                    href="/admin/classroom/create"
+                                    href="/admin/student/create"
                                     class="btn btn-md btn-primary"
                                     ><i class="fas fa-plus"></i>
                                     Tambah
+                                </Link>
+                                <Link
+                                    href="/admin/student/import"
+                                    class="btn btn-md btn-warning ml-4"
+                                    ><i class="fas fa-file-excel"></i>
+                                    Export
                                 </Link>
                             </div>
                             <div class="col-4"></div>
@@ -23,28 +29,35 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Mata Pelajaran</th>
+                                    <th>Nama</th>
+                                    <th>NISN</th>
+                                    <th>Password</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Kelas</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr
-                                    v-for="classrooms in classroom"
-                                    :key="classrooms.id"
+                                    v-for="students in student"
+                                    :key="students.id"
                                 >
                                     <td>1</td>
-                                    <td>{{ classrooms.title }}</td>
+                                    <td>{{ students.name }}</td>
+                                    <td>{{ students.nisn }}</td>
+                                    <td>{{ students.password }}</td>
+                                    <td>{{ students.gender }}</td>
+                                    <td>{{ students.classroom.title }}</td>
                                     <td>
                                         <Link
-                                            :href="`/admin/classroom/edit/${classrooms.id}`"
-                                            class="btn btn-success"
+                                            :href="`/admin/student/edit/${students.id}`"
+                                            class="btn btn-success btn-sm"
                                             >Edit</Link
                                         >
                                         |
                                         <Link
-                                            @click.prevent="destroy"
-                                            :href="`/admin/classroom/delete/${classrooms.id}`"
-                                            class="btn btn-danger"
+                                            :href="`/admin/student/delete/${students.id}`"
+                                            class="btn btn-danger btn-sm"
                                             >Hapus</Link
                                         >
                                     </td>
@@ -53,9 +66,9 @@
                         </table>
                     </div>
                 </div>
-                <Footer />
             </div>
         </main>
+        <Footer />
     </div>
 </template>
 
@@ -63,40 +76,15 @@
 import Layout from "../../../Layouts/Layout.vue";
 import Footer from "../../../Components/Footer.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import Swal from "sweetalert2";
 
 export default {
+    layout: Layout,
+    props: {
+        student: Object,
+    },
     components: {
         Footer,
         Link,
-    },
-    layout: Layout,
-    props: {
-        classroom: Object,
-    },
-    methods: {
-        destroy() {
-            Swal.fire({
-                title: "Apakah Anda Yakin?",
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Inertia.delete(`/admin/classroom/delete/${classroom.id}`);
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Pelajaran Berhasil Dihapus!.",
-                        icon: "success",
-                        timer: 2000,
-                        showConfirmButton: false,
-                    });
-                }
-            });
-        },
     },
 };
 </script>

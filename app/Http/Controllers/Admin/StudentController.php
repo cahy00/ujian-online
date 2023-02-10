@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,13 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+		// 	$student = Student::when(request()->q, function($student) {
+		// 		$student = $student->where('name', 'like', '%'. request()->q . '%');
+		// })->with('classroom')->latest()->paginate(5);
+		$student = Student::with(['classroom'])->get();
+
+		return inertia('Admin/Student/Index', compact('student'));
+
     }
 
     /**
@@ -24,7 +32,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $classroom = Classroom::all();
+				return inertia('Admin/Student/Create', compact('classroom'));
     }
 
     /**
@@ -35,16 +44,32 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+					'name' => 'required|string|max:25',
+					'nisn'	=> 'required|numeric|unique:students',
+					'gender' => 'required|string',
+					'password' => 'required|confirmed',
+					'classroom_id' => 'required'
+				]);
+
+				$student = Student::create([
+					'name' => $request->name,
+					'nisn' => $request->nisn,
+					'gender' => $request->gender,
+					'password' => bcrypt($request->password),
+					'classroom_id' => $request->classroom_id
+				]);
+
+				return redirect()->route('student.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
         //
     }
@@ -52,10 +77,10 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +89,10 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +100,10 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
         //
     }
