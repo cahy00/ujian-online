@@ -100,8 +100,11 @@ class ClassroomController extends Controller
      * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom)
+    public function destroy($id)
     {
-        //
+        $classroom = Classroom::findOrFail($id);
+				$classroom->delete();
+
+				return redirect()->route('classroom.index');
     }
 }

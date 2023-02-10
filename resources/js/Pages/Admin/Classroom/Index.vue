@@ -40,6 +40,13 @@
                                             class="btn btn-success"
                                             >Edit</Link
                                         >
+                                        |
+                                        <Link
+                                            @click.prevent="destroy"
+                                            :href="`/admin/classroom/delete/${classrooms.id}`"
+                                            class="btn btn-danger"
+                                            >Hapus</Link
+                                        >
                                     </td>
                                 </tr>
                             </tbody>
@@ -56,6 +63,8 @@
 import Layout from "../../../Layouts/Layout.vue";
 import Footer from "../../../Components/Footer.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import Swal from "sweetalert2";
+
 export default {
     components: {
         Footer,
@@ -64,6 +73,30 @@ export default {
     layout: Layout,
     props: {
         classroom: Object,
+    },
+    methods: {
+        destroy() {
+            Swal.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Inertia.delete(`/admin/classroom/delete/${classroom.id}`);
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Pelajaran Berhasil Dihapus!.",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                    });
+                }
+            });
+        },
     },
 };
 </script>

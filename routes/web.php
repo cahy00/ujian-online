@@ -36,6 +36,8 @@ Route::prefix('admin')->group(function(){
 	Route::post('/classroom/create', [ClassroomController::class, 'store'])->name('classroom.store');
 	Route::get('/classroom/edit/{id}', [ClassroomController::class, 'edit'])->name('classroom.edit');
 	Route::put('/classroom/update/{id}', [ClassroomController::class, 'update'])->name('classroom.update');
+	Route::put('/classroom/update/{id}', [ClassroomController::class, 'update'])->name('classroom.update');
+	Route::get('/classroom/delete/{id}', [ClassroomController::class, 'destroy'])->name('classroom.delete');
 
 
 });
