@@ -34,7 +34,13 @@
                                 >
                                     <td>1</td>
                                     <td>{{ classrooms.title }}</td>
-                                    <td>3</td>
+                                    <td>
+                                        <Link
+                                            :href="`/admin/classroom/edit/${classrooms.id}`"
+                                            class="btn btn-success"
+                                            >Edit</Link
+                                        >
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

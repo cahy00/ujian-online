@@ -66,9 +66,11 @@ class ClassroomController extends Controller
      * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classroom $classroom)
-    {
-        //
+    public function edit($id)
+    {		
+				$classroom = Classroom::find($id);
+        return inertia('Admin/Classroom/Edit', compact('classroom'));
+
     }
 
     /**
@@ -78,9 +80,18 @@ class ClassroomController extends Controller
      * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classroom $classroom)
+    public function update(Request $request, $id)
     {
-        //
+				$request->validate([
+					'title' => 'required|string'
+				]);
+
+        $classroom = Classroom::findOrFail($id);
+				$classroom->update([
+					'title' => $request->title
+				]);
+
+				return redirect()->route('classroom.index');
     }
 
     /**

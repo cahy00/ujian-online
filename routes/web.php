@@ -31,8 +31,11 @@ Route::prefix('admin')->group(function(){
 	Route::put('/lesson/update/{id}', [LessonController::class, 'update'])->name('lesson.update');
 	Route::get('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lesson.delete');
 	//route classroom
-	Route::get('/classroom', [ClassroomController::class, 'index'])->name('admin.classroom');
+	Route::get('/classroom', [ClassroomController::class, 'index'])->name('classroom.index');
 	Route::get('/classroom/create', [ClassroomController::class, 'create'])->name('classroom.create');
 	Route::post('/classroom/create', [ClassroomController::class, 'store'])->name('classroom.store');
+	Route::get('/classroom/edit/{id}', [ClassroomController::class, 'edit'])->name('classroom.edit');
+	Route::put('/classroom/update/{id}', [ClassroomController::class, 'update'])->name('classroom.update');
+
 
 });
