@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <Link
-                                    href="/admin/lesson/create"
+                                    href="/admin/classroom/create"
                                     class="btn btn-md btn-primary"
                                     ><i class="fas fa-plus"></i>
                                     Tambah
@@ -49,9 +49,11 @@
 <script>
 import Layout from "../../../Layouts/Layout.vue";
 import Footer from "../../../Components/Footer.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 export default {
     components: {
         Footer,
+        Link,
     },
     layout: Layout,
     props: {

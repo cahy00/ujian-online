@@ -27,7 +27,7 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Admin/Classroom/Create');
     }
 
     /**
@@ -38,7 +38,15 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+					'title' => 'required|string|unique:lessons'
+				]);
+
+				$classroom = Classroom::create([
+					'title' => $request->title
+				]);
+
+				return redirect('/admin/classroom');
     }
 
     /**

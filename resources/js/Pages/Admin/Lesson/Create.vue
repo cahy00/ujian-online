@@ -34,12 +34,12 @@
                                     placeholder="Masukkan Mata Pelajaran"
                                     v-model="form.title"
                                 />
-                                <p
+                                <div
                                     v-if="errors.title"
                                     class="alert alert-danger"
                                 >
                                     {{ errors.title }}
-                                </p>
+                                </div>
                             </div>
                             <button
                                 type="submit"
