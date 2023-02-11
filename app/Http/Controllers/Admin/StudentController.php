@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\StudentsImport;
 use App\Models\Classroom;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -107,4 +109,19 @@ class StudentController extends Controller
     {
         //
     }
+
+		public function import()
+		{
+				return inertia('Admin/Student/Import');
+		}
+
+		public function storeImport(Request $request)
+		{
+				$request->validate([
+					'file' => 'required|mimes:csv,xls,xlsx',
+				]);
+
+				Excel::import(new StudentsImport(), $request->file('file'));
+				return redirect()->route('student.index');
+		}
 }

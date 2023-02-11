@@ -46,6 +46,7 @@ Route::prefix('admin')->group(function(){
 	Route::get('/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
 	Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.delete');
 	Route::get('/student/import/', [StudentController::class, 'import'])->name('student.import');
+	Route::post('/student/import/', [StudentController::class, 'storeImport'])->name('student.storeimport');
 
 
 
