@@ -1,20 +1,35 @@
 <template>
-    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
-        <div class="container">
-            <div
-                class="row justify-content-center form-bg-image"
-                style="background: url('/assets/images/signin.svg')"
-            >
-                <div
-                    class="col-12 d-flex align-items-center justify-content-center"
-                >
-                    <slot />
+    <div id="layoutAuthentication" class="bg">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div
+                                class="card shadow-lg border-0 rounded-lg mt-5"
+                            >
+                                <slot />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
-    </section>
+    </div>
 </template>
 
+<style>
+.bg {
+    background-image: url("https://source.unsplash.com/random/1920x1080/?city,night");
+}
+</style>
+
 <script>
-export default {};
+import Footer from "../Components/Footer.vue";
+
+export default {
+    components: {
+        Footer,
+    },
+};
 </script>
