@@ -55,14 +55,19 @@
                                         <Link
                                             :href="`/admin/student/edit/${students.id}`"
                                             class="btn btn-success btn-sm"
+                                            ><i class="fa fa-pencil-alt"></i
                                             >Edit</Link
                                         >
                                         |
-                                        <Link
+                                        <button
+                                            @click.prevent="
+                                                destroy(students.id)
+                                            "
                                             :href="`/admin/student/delete/${students.id}`"
                                             class="btn btn-danger btn-sm"
-                                            >Hapus</Link
                                         >
+                                            <i class="fa fa-trash"></i>Hapus
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -79,6 +84,8 @@
 import Layout from "../../../Layouts/Layout.vue";
 import Footer from "../../../Components/Footer.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
 
 export default {
     layout: Layout,
@@ -88,6 +95,30 @@ export default {
     components: {
         Footer,
         Link,
+    },
+    methods: {
+        destroy(id) {
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Inertia.delete(`/admin/student/delete/${id}`);
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Siswa Berhasil Dihapus!.",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                    });
+                }
+            });
+        },
     },
 };
 </script>
