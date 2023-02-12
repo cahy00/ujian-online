@@ -8,6 +8,7 @@ use App\Models\Classroom;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
 class StudentController extends Controller
 {
@@ -84,7 +85,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+				$classroom = Classroom::all();
+				return inertia('Admin/Student/Edit', compact('student', 'classroom'));
     }
 
     /**
@@ -95,8 +98,35 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {		
+			$student = Student::findOrFail($id);
+
+				$request->validate([
+					'name' => 'required|string|max:25',
+					'nisn'	=> 'required|numeric|unique:students,nisn,'.$student->id,
+					'gender' => 'required|string',
+					'password' => 'confirmed',
+					'classroom_id' => 'required'
+				]);
+
+				if($request->password == ""){
+					$student->update([
+						'name' => $request->name,
+						'nisn' => $request->nisn,
+						'gender' => $request->gender,
+						'classroom_id' => $request->classroom_id
+					]);
+				}else{
+					$student->update([
+						'name' => $request->name,
+						'nisn' => $request->nisn,
+						'gender' => $request->gender,
+						'password' => $request->password,
+						'classroom_id' => $request->classroom_id
+					]);
+				};
+
+				return redirect()->route('student.index');
     }
 
     /**
