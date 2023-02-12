@@ -5,7 +5,7 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
                     <Link
-                        href="/admin/dashboard"
+                        href="/admin/"
                         :class="{
                             active: $page.url.startsWith('/admin/dashboard'),
                         }"
