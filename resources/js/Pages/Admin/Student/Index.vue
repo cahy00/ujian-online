@@ -46,7 +46,10 @@
                                     <td>{{ students.name }}</td>
                                     <td>{{ students.nisn }}</td>
                                     <td>{{ students.password }}</td>
-                                    <td>{{ students.gender }}</td>
+                                    <td v-if="students.gender == 'L'">
+                                        Laki-laki
+                                    </td>
+                                    <td v-else>Perempuan</td>
                                     <td>{{ students.classroom.title }}</td>
                                     <td>
                                         <Link
