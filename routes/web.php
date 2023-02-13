@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -28,6 +29,7 @@ Route::post('/logout', [LogoutController::class, 'logout']);
 Route::middleware('auth')->group(function(){
 	//route dashboard
 	Route::get('/', [DashboardController::class, '__invoke'])->name('admin.dashboard');
+	
 	Route::prefix('admin')->group(function(){
 	//route lesson
 	Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
