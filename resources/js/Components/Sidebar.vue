@@ -5,7 +5,7 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
                     <Link
-                        href="/admin/"
+                        href="/"
                         :class="{
                             active: $page.url.startsWith('/admin/dashboard'),
                         }"
@@ -54,12 +54,16 @@
                         Siswa
                     </Link>
                     <div class="sb-sidenav-menu-heading">Exam</div>
-                    <a class="nav-link" href="charts.html">
+                    <Link
+                        class="nav-link"
+                        href="/admin/exam"
+                        :class="{ active: $page.url.startsWith('/admin/exam') }"
+                    >
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-chart-area"></i>
                         </div>
                         Ujian
-                    </a>
+                    </Link>
                     <a class="nav-link" href="tables.html">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-table"></i>

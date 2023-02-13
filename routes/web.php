@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\ExamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,10 @@ Route::middleware('auth')->group(function(){
 	Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.delete');
 	Route::get('/student/import/', [StudentController::class, 'import'])->name('student.import');
 	Route::post('/student/import/', [StudentController::class, 'storeImport'])->name('student.storeimport');
+	//route exam
+	Route::get('/exam', [ExamController::class, 'index'])->name('exam');
+	Route::get('/exam/create', [ExamController::class, 'create'])->name('exam.create');
+	Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('exam.show');
 	});
 });
 
