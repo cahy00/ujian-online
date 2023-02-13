@@ -41,7 +41,29 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+				// 	'title' 					=> 'required|string',
+				// 	'classroom_id' 		=> 'required|numeric',
+				// 	'lesson_id' 			=> 'required|numeric',
+				// 	'description' 		=> 'required',
+				// 	'duration' 				=> 'required',
+				// 	'random_question' => 'required',
+				// 	'random_answer' 	=> 'required',
+				// 	'show_answer'			=> 'required'
+				// ]);
+
+				$exam = Exam::create([
+					'title' 					=> $request->title,
+					'classroom_id' 		=> $request->classroom_id,
+					'lesson_id' 			=> $request->lesson_id,
+					'description' 		=> $request->description,
+					'duration' 				=> $request->duration,
+					'random_question' => $request->random_question,
+					'random_answer' 	=> $request->random_answer,
+					'show_answer'			=> $request->show_answer,
+				]);
+
+				return redirect()->route('exam');
     }
 
     /**

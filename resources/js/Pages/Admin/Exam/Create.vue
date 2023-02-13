@@ -32,7 +32,10 @@
                                     class="form-control"
                                     v-model="form.title"
                                 />
-                                <div class="invalid-feedback">
+                                <div
+                                    v-if="errors.title"
+                                    class="invalid-feedback"
+                                >
                                     {{ errors.title }}
                                 </div>
                             </div>
@@ -53,6 +56,12 @@
                                                 {{ classrooms.title }}
                                             </option>
                                         </select>
+                                        <div
+                                            v-if="errors.classroom_id"
+                                            class="invalid-feedback"
+                                        >
+                                            {{ errors.classroom_id }}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -73,6 +82,12 @@
                                                 {{ lessons.title }}
                                             </option>
                                         </select>
+                                        <div
+                                            v-if="errors.lesson_id"
+                                            class="invalid-feedback"
+                                        >
+                                            {{ errors.lesson_id }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +96,9 @@
                                 <Editor
                                     api-key="tym8sv917r013htcr07qbxet8nmp7axloc18omawdb22nvay"
                                     v-model="form.description"
+                                    :class="{
+                                        'is-invalid': errors.description,
+                                    }"
                                     :init="{
                                         menubar: false,
                                         plugins: 'lists link image emoticons',
@@ -88,7 +106,106 @@
                                             'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons',
                                     }"
                                 />
+                                <div
+                                    v-if="errors.description"
+                                    class="invalid-feedback"
+                                >
+                                    {{ errors.description }}
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb4">
+                                        <label for="title"
+                                            >Acak Pertanyaan</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            v-model="form.random_question"
+                                        >
+                                            <option value="Y">Iya</option>
+                                            <option value="N">Tidak</option>
+                                        </select>
+                                        <div
+                                            v-if="errors.random_question"
+                                            class="invalid-feedback"
+                                        >
+                                            {{ errors.random_question }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb4">
+                                        <label for="title">Acak Jawaban</label>
+                                        <select
+                                            class="form-select"
+                                            v-model="form.random_answer"
+                                        >
+                                            <option value="Y">Iya</option>
+                                            <option value="N">Tidak</option>
+                                        </select>
+                                        <div
+                                            v-if="errors.random_answer"
+                                            class="invalid-feedback"
+                                        >
+                                            {{ errors.random_answer }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb4">
+                                        <label for="title"
+                                            >Tampilkan Hasil</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            v-model="form.random_question"
+                                        >
+                                            <option value="Y">Iya</option>
+                                            <option value="N">Tidak</option>
+                                        </select>
+                                        <div
+                                            v-if="errors.random_question"
+                                            class="invalid-feedback"
+                                        >
+                                            {{ errors.random_question }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb4">
+                                        <label for="title"
+                                            >Durasi (menit)</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            placeholder="Masukkan Durasi Ujian (menit)"
+                                        />
+                                        <div
+                                            v-if="errors.random_answer"
+                                            class="invalid-feedback"
+                                        >
+                                            {{ errors.random_answer }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <button
+                                type="submit"
+                                class="btn btn-md btn-primary border-0 shadow me-2"
+                            >
+                                Simpan
+                            </button>
+                            <button
+                                type="reset"
+                                class="btn btn-md btn-warning border-0 shadow"
+                            >
+                                Reset
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -100,6 +217,7 @@
 <script>
 import Layout from "../../../Layouts/Layout.vue";
 import Editor from "@tinymce/tinymce-vue";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
     components: {
@@ -126,7 +244,9 @@ export default {
         };
     },
     methods: {
-        submit() {},
+        submit() {
+            console.log(this.form.title);
+        },
     },
 };
 </script>

@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function(){
 	//route exam
 	Route::get('/exam', [ExamController::class, 'index'])->name('exam');
 	Route::get('/exam/create', [ExamController::class, 'create'])->name('exam.create');
+	Route::post('/exam/store', [ExamController::class, 'store'])->name('exam.store');
 	Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('exam.show');
 	});
 });
