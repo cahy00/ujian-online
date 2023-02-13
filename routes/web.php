@@ -26,9 +26,9 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LogoutController::class, 'logout']);
 
 Route::middleware('auth')->group(function(){
-	Route::prefix('admin')->group(function(){
 	//route dashboard
-	Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('admin.dashboard');
+	Route::get('/', [DashboardController::class, '__invoke'])->name('admin.dashboard');
+	Route::prefix('admin')->group(function(){
 	//route lesson
 	Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
 	Route::get('/lesson/create', [LessonController::class, 'create']);
