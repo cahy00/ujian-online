@@ -3,13 +3,14 @@
         <h3 class="text-center font-weight-light my-4">Login</h3>
     </div>
     <div class="card-body">
-        <form>
+        <form @submit.prevent="submit">
             <div class="form-floating mb-3">
                 <input
                     class="form-control"
                     id="inputEmail"
                     type="email"
                     placeholder="name@example.com"
+                    v-model="form.email"
                 />
                 <label for="inputEmail">Email address</label>
             </div>
@@ -19,25 +20,15 @@
                     id="inputPassword"
                     type="password"
                     placeholder="Password"
+                    v-model="form.password"
                 />
                 <label for="inputPassword">Password</label>
-            </div>
-            <div class="form-check mb-3">
-                <input
-                    class="form-check-input"
-                    id="inputRememberPassword"
-                    type="checkbox"
-                    value=""
-                />
-                <label class="form-check-label" for="inputRememberPassword"
-                    >Remember Password</label
-                >
             </div>
             <div
                 class="d-flex align-items-center justify-content-between mt-4 mb-0"
             >
                 <a class="small" href="password.html">Forgot Password?</a>
-                <a class="btn btn-primary" href="index.html">Login</a>
+                <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
     </div>
@@ -51,9 +42,26 @@
 <script>
 import { Link } from "@inertiajs/inertia-vue3";
 import Layout from "../../Layouts/Auth.vue";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
     layout: Layout,
     components: { Link },
+    data() {
+        return {
+            form: {
+                email: "",
+                password: "",
+            },
+        };
+    },
+    methods: {
+        submit() {
+            Inertia.post("/login", {
+                email: this.form.email,
+                password: this.form.password,
+            });
+        },
+    },
 };
 </script>

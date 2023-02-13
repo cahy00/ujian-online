@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LogoutController::class, 'logout']);
 
-Route::prefix('admin')->group(function(){
+Route::middleware('auth')->group(function(){
+	Route::prefix('admin')->group(function(){
 	//route dashboard
-	Route::get('/', [DashboardController::class, '__invoke'])->name('admin.dashboard');
+	Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('admin.dashboard');
 	//route lesson
 	Route::get('/lesson', [LessonController::class, 'index'])->name('lesson.index');
 	Route::get('/lesson/create', [LessonController::class, 'create']);
@@ -48,7 +52,6 @@ Route::prefix('admin')->group(function(){
 	Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.delete');
 	Route::get('/student/import/', [StudentController::class, 'import'])->name('student.import');
 	Route::post('/student/import/', [StudentController::class, 'storeImport'])->name('student.storeimport');
-
-
-
+	});
 });
+

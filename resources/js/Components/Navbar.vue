@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/inertia-vue3';
+
 <template>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -33,9 +35,29 @@
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li>
+                        <Link @click.prevent="logout" class="dropdown-item"
+                            >Logout</Link
+                        >
+                    </li>
                 </ul>
             </li>
         </ul>
     </nav>
 </template>
+
+<script>
+import { Link } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+
+export default {
+    components: {
+        Link,
+    },
+    methods: {
+        logout() {
+            Inertia.post("/logout");
+        },
+    },
+};
+</script>
