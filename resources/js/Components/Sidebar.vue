@@ -47,6 +47,7 @@
                             active: $page.url.startsWith('/admin/student'),
                         }"
                         class="nav-link"
+                        as
                     >
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-user-md"></i>
