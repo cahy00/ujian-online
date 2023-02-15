@@ -43,7 +43,7 @@
                     </Link>
                     <Link
                         href="/admin/student"
-                        ds
+                        dssd
                         :class="{
                             active: $page.url.startsWith('/admin/student'),
                         }"
