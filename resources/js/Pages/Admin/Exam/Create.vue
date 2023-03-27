@@ -218,6 +218,7 @@
 import Layout from "../../../Layouts/Layout.vue";
 import Editor from "@tinymce/tinymce-vue";
 import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
 
 export default {
     components: {
@@ -245,7 +246,23 @@ export default {
     },
     methods: {
         submit() {
-            console.log(this.form.title);
+            Inertia.post(
+                "/admin/exam/store",
+                {
+                    title: this.form.title,
+                },
+                {
+                    onSuccess: () => {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Pelajaran Berhasil Disimpan!.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+                    },
+                }
+            );
         },
     },
 };
