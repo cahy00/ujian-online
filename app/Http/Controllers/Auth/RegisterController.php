@@ -11,4 +11,5 @@ class RegisterController extends Controller
 		{
 				return inertia('Auth/Register');
 		}
+		
 }

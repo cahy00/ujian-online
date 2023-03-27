@@ -7,18 +7,9 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\ExamController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 //Route Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -54,6 +45,11 @@ Route::middleware('auth')->group(function(){
 	Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.delete');
 	Route::get('/student/import/', [StudentController::class, 'import'])->name('student.import');
 	Route::post('/student/import/', [StudentController::class, 'storeImport'])->name('student.storeimport');
+	//route exam
+	Route::get('/exam', [ExamController::class, 'index'])->name('exam');
+	Route::get('/exam/create', [ExamController::class, 'create'])->name('exam.create');
+	Route::post('/exam/store', [ExamController::class, 'store'])->name('exam.store');
+	Route::get('/exam/show/{id}', [ExamController::class, 'show'])->name('exam.show');
 	});
 });
 
